@@ -52,6 +52,18 @@ document.addEventListener('DOMContentLoaded', () => {
             breedText.textContent = element
             breedText.addEventListener('click', (event) => event.target.style.color = 'blue')
             document.querySelector('#dog-breeds').appendChild(breedText)
+
+            //filter presented dogs by first letter
+            const selectedLetter = document.querySelector('#breed-dropdown');
+            selectedLetter.addEventListener("change", () => {
+                console.log('selected letter', selectedLetter)
+                if(breedText.textContent.slice(0,1) != selectedLetter.value){
+                    breedText.style.display = "none"
+                } else {
+                    breedText.style.display = "block"
+                }
+            })
+
         })
     }
 
