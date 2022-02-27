@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const imgUrl = "https://dog.ceo/api/breeds/image/random/4";
     const breedUrl = 'https://dog.ceo/api/breeds/list/all'
 
+    //empty arrays that will store list of items for iteration
     let listofValues = [];
     let listOfBreeds = [];
 
@@ -36,21 +37,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetches and Displays Dog Breed Names
     //-----------------------------------------------------------------------------------
 
+    //gets dog breeds object and creates a list of the breed names
     fetch(breedUrl)
     .then(response => response.json())
     .then(data => {
-        console.log('breeds data', data.message)
         listOfBreeds = Object.keys(data.message)
-        console.log("List of breeds?", listOfBreeds)
         addDogNames();
     })
-      
+    
+    //creats HTML elements, adds content to new elements, adds to DOM
     function addDogNames() {
         listOfBreeds.forEach(element => {
             const breedText = document.createElement('li')
             breedText.textContent = element
+            breedText.addEventListener('click', (event) => event.target.style.color = 'blue')
             document.querySelector('#dog-breeds').appendChild(breedText)
-            console.log("add dog names running")
         })
     }
 
